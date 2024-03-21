@@ -192,7 +192,9 @@ function getWeekNumberByDate(date) {
   const startYear = new Date(date.getFullYear(), 0, 1);
   const msInDay = 24 * 60 * 60 * 1000;
   const period = (date - startYear) / msInDay;
-  return Math.ceil((period + startYear.getDay() + 1) / 7);
+  return startYear.getDay() === 0
+    ? Math.ceil((period + startYear.getDay()) / 7) + 1
+    : Math.ceil((period + startYear.getDay()) / 7);
 }
 
 /**
